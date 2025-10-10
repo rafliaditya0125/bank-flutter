@@ -53,5 +53,5 @@ lib/
  ```
  
  ## 📬 Kontak saya
- Email: rafliaditya0125@gmail.com
+ Email: rafliaditya0125@gmail.com<br>
  GitHub: [rafliaditya0125](https://github.com/rafliaditya0125)
