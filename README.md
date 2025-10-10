@@ -43,12 +43,14 @@ flutter run -d linux
 ```
 
 ## 📁 Struktur Proyek
+```
 lib/
  ├── button.dart      ←  Template button
  ├── splash_page.dart ← Splash page aplikasi
  ├── login_page.dart  ← Login page aplikasi
  ├── properties.dart  ← Properti yang digunakan di aplikasi
  └── main.dart        ← Titik masuk utama aplikasi
+ ```
  
  ## 📬 Kontak saya
  Email: rafliaditya0125@gmail.com
