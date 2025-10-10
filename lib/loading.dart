@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'main.dart';
+import 'properties.dart';
 
-class HalamanLoading extends StatelessWidget {
-  const HalamanLoading({super.key});
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
   @override
   Widget build(BuildContext context) {
     Future.delayed(Duration(seconds: 3), () {
-      Navigator.pushReplacementNamed(context, '/main');
+      Navigator.pushReplacementNamed(context, '/login');
     });
     return Container(
-      color: Properti.warnaUtama,
+      color: Properties.mainColor,
       child: Stack(
         children: [
           Center(

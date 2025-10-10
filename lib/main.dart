@@ -1,29 +1,16 @@
 import 'package:flutter/material.dart';
 import 'loading.dart';
-
-class Properti {
-  static const Color warnaUtama = Color(0xFF8700C3);
-}
+import 'login.dart';
 
 void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HalamanLoading(),
       initialRoute: '/loading',
       routes: {
-        '/loading': (context) => HalamanLoading(),
-        '/main': (context) => HalamanUtama(),
+        '/loading': (context) => SplashPage(),
+        '/login': (context) => LoginPage(),
       },
     ),
   );
-}
-
-class HalamanUtama extends StatelessWidget {
-  const HalamanUtama({super.key});
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
 }
