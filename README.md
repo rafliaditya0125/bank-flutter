@@ -1,16 +1,55 @@
-# bank
+# 💰 Bank Flutter
 
-A new Flutter project.
+Aplikasi **Bank Flutter** adalah aplikasi perbankan modern berbasis **Flutter** dan **Dart**, dirancang untuk mensimulasikan pengalaman pengguna dalam mengelola akun bank secara digital.  
+Proyek ini dikembangkan untuk tujuan pembelajaran dan eksplorasi pengembangan aplikasi mobile dengan arsitektur bersih dan UI yang menarik.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Fitur Utama
 
-A few resources to get you started if this is your first Flutter project:
+✨ Fitur yang tersedia / akan dikembangkan:
+- 🔐 **Login & Registrasi Pengguna** — sistem autentikasi sederhana
+- 🧩 **UI Responsif** — tampilan menyesuaikan berbagai ukuran layar
+- ⚙️ **Manajemen State & Validasi Input**
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+> ⚠️ Catatan: Sebagian fitur mungkin masih dalam tahap pengembangan.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 🛠️ Instalasi dan Menjalankan Proyek
+
+Ikuti langkah-langkah berikut untuk mencoba proyek ini di perangkatmu:
+
+### 1️⃣ Clone repositori
+```bash
+git clone https://github.com/rafliaditya0125/bank-flutter.git
+cd bank-flutter
+```
+### 2️⃣ Install dependensi
+```bash
+flutter pub get
+```
+### 3️⃣ Jalankan aplikasi
+```bash
+flutter run
+```
+Atau untuk target spesifik
+```bash
+flutter run -d android #atau
+flutter run -d ios #atau
+flutter run -d web #atau
+flutter run -d windows #atau
+flutter run -d linux
+```
+
+## 📁 Struktur Proyek
+lib/
+ ├── button.dart      ←  Template button
+ ├── splash_page.dart ← Splash page aplikasi
+ ├── login_page.dart  ← Login page aplikasi
+ ├── properties.dart  ← Properti yang digunakan di aplikasi
+ └── main.dart        ← Titik masuk utama aplikasi
+ 
+ ## 📬 Kontak saya
+ Email: rafliaditya0125@gmail.com
+ GitHub: [rafliaditya0125](https://github.com/rafliaditya0125)

@@ -36,7 +36,7 @@ class LoginPageState extends State<LoginPage> {
               style: TextStyle(color: Colors.grey, fontSize: 15),
             ),
             Text(
-              'Savings\nBank App',
+              'Flutter\nBank App',
               style: TextStyle(color: Properties.mainColor, fontSize: 30),
             ),
             Expanded(
