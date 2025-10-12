@@ -16,8 +16,8 @@ Proyek ini dikembangkan untuk tujuan pembelajaran dan eksplorasi pengembangan ap
 ---
 
 ## Minimum SDK Version
-Dart: v3.7.2 <br>
-Flutter:  v3.18.0-18.0.pre.54
+- Dart: v3.7.2 <br>
+- Flutter:  v3.18.0-18.0.pre.54
 
 ## 🛠️ Instalasi dan Menjalankan Proyek
 
