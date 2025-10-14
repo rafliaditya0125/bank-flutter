@@ -1,60 +1,49 @@
-# 💰 Bank Flutter
+# Flutter Bank App
+An App for manage bank account made with **Flutter**
 
-Aplikasi **Bank Flutter** adalah aplikasi perbankan modern berbasis **Flutter** dan **Dart**, dirancang untuk mensimulasikan pengalaman pengguna dalam mengelola akun bank secara digital.  
-Proyek ini dikembangkan untuk tujuan pembelajaran dan eksplorasi pengembangan aplikasi mobile dengan arsitektur bersih dan UI yang menarik.
-
----
-
-## 🚀 Fitur Utama
-
-✨ Fitur yang tersedia / akan dikembangkan:
-- 🔐 **Login & Registrasi Pengguna** — sistem autentikasi sederhana
-- 🧩 **UI Responsif** — tampilan menyesuaikan berbagai ukuran layar
-- ⚙️ **Manajemen State & Validasi Input**
-
-> ⚠️ Catatan: Sebagian fitur mungkin masih dalam tahap pengembangan.
 ---
 
 ## Minimum SDK Version
 - Dart: v3.7.2 <br>
 - Flutter:  v3.18.0-18.0.pre.54
+---
 
-## 🛠️ Instalasi dan Menjalankan Proyek
+## Installation
 
-Ikuti langkah-langkah berikut untuk mencoba proyek ini di perangkatmu:
+Follow this steps:
 
-### 1️⃣ Clone repositori
+### Clone this repositori
 ```bash
 git clone https://github.com/rafliaditya0125/bank-flutter.git
 cd bank-flutter
 ```
-### 2️⃣ Install dependensi
+### Install dependencies
 ```bash
 flutter pub get
 ```
-### 3️⃣ Jalankan aplikasi
+### Run app
 ```bash
 flutter run
 ```
-Atau untuk target spesifik
+for specific platform:
 ```bash
-flutter run -d android #atau
-flutter run -d ios #atau
-flutter run -d web #atau
-flutter run -d windows #atau
+flutter run -d platform
+```
+for example:
+```bash
 flutter run -d linux
 ```
-
-## 📁 Struktur Proyek
+---
+## Project structures
 ```
 lib/
- ├── button.dart      ←  Template button
- ├── splash_page.dart ← Splash page aplikasi
- ├── login_page.dart  ← Login page aplikasi
- ├── properties.dart  ← Properti yang digunakan di aplikasi
- └── main.dart        ← Titik masuk utama aplikasi
+ ├── button.dart      ←  Button template
+ ├── splash_page.dart ← App Splash page
+ ├── login_page.dart  ← App Login page
+ ├── properties.dart  ← Properties used in app
+ └── main.dart        ← Main code in this app
  ```
- 
- ## 📬 Kontak saya
+ ---
+ ## Contact me
  Email: rafliaditya0125@gmail.com<br>
- GitHub: [rafliaditya0125](https://github.com/rafliaditya0125)
+ Whatsapp: [+6285173106273](https://wa.me/6285173106273)
