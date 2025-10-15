@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "894168498081",
+    "project_id": "rafli-bank-app",
+    "storage_bucket": "rafli-bank-app.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:894168498081:android:dfaf547f15f5caee56d5e0",
+        "android_client_info": {
+          "package_name": "com.rafli.bank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "894168498081-rojpg7duqv98vsdvl6qb1v7nut52fjl8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBU1eyly5QmcKdFuWEGTWE7rrLt7eMFOXM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "894168498081-rojpg7duqv98vsdvl6qb1v7nut52fjl8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

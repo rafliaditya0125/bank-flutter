@@ -1,6 +1,8 @@
 import 'package:bank/button.dart';
 import 'package:bank/properties.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,9 +13,19 @@ class LoginPage extends StatefulWidget {
 class LoginPageState extends State<LoginPage> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  bool validateEmailAndPassword() {
+    return usernameController.value.text.isNotEmpty &&
+        passwordController.value.text.isNotEmpty &&
+        Properties.validateEmail(usernameController.value.text);
+  }
 
   @override
   Widget build(BuildContext context) {
+    LoginService loginService = Provider.of<LoginService>(
+      context,
+      listen: false,
+    );
+
     return Scaffold(
       backgroundColor: Properties.backgroundColor,
       body: Container(
@@ -104,7 +116,7 @@ class LoginPageState extends State<LoginPage> {
                           ),
                           border: InputBorder.none,
                           prefixIcon: Icon(
-                            Icons.email,
+                            Icons.lock,
                             color: Properties.mainColor,
                           ),
                           focusedBorder: OutlineInputBorder(
@@ -119,11 +131,43 @@ class LoginPageState extends State<LoginPage> {
                         controller: passwordController,
                       ),
                     ),
+                    Consumer<LoginService>(
+                      builder: (context, lService, child) {
+                        String errorMsg = lService.getErrorMessage();
+
+                        if (errorMsg.isEmpty) {
+                          return const SizedBox(height: 40);
+                        }
+
+                        return Container(
+                          padding: EdgeInsets.all(10),
+                          child: Row(),
+                        );
+                      },
+                    ),
                   ],
                 ),
               ),
             ),
-            Button(label: "Sign In", enabled: true, onTap: () {}),
+            Button(
+              label: "Sign In",
+              enabled: validateEmailAndPassword(),
+              onTap: () async {
+                var email = usernameController.value.text;
+                var password = passwordController.value.text;
+
+                bool isLoggedIn = await loginService.signInWithEmailAndPassword(
+                  email,
+                  password,
+                );
+
+                if (isLoggedIn) {
+                  usernameController.clear();
+                  passwordController.clear();
+                  Navigator.pushNamed(context, '/home');
+                }
+              },
+            ),
             SizedBox(height: 10),
             Button(
               label: 'Register',
@@ -136,5 +180,36 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+}
+
+class LoginService extends ChangeNotifier {
+  String _userId = '';
+  String _errorMessage = '';
+
+  String getUserId() {
+    return _userId;
+  }
+
+  String getErrorMessage() {
+    return _errorMessage;
+  }
+
+  void setLoginErrorMessage(String msg) {
+    _errorMessage = msg;
+    notifyListeners();
+  }
+
+  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+    setLoginErrorMessage('');
+    try {
+      UserCredential credentials = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      _userId = credentials.user!.uid;
+      return true;
+    } on FirebaseAuthException catch (ex) {
+      setLoginErrorMessage('Error during sign in: ' + ex.message!);
+      return false;
+    }
   }
 }
