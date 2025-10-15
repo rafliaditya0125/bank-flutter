@@ -11,3 +11,15 @@ web/** linguist-detectable=false
 *.png binary
 *.webp binary
 *.jpg binary
+
+# Firebase dan credential terenkripsi dengan git-crypt
+lib/firebase_options.dart filter=git-crypt diff=git-crypt
+android/app/google-services.json filter=git-crypt diff=git-crypt
+ios/Runner/GoogleService-Info.plist filter=git-crypt diff=git-crypt
+web/firebase_config.js filter=git-crypt diff=git-crypt
+
+# Pola umum untuk file rahasia
+*secret* filter=git-crypt diff=git-crypt
+*credential* filter=git-crypt diff=git-crypt
+*.key filter=git-crypt diff=git-crypt
+*token* filter=git-crypt diff=git-crypt
