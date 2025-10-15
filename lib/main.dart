@@ -1,16 +1,26 @@
+import 'package:bank/home_page.dart';
 import 'package:flutter/material.dart';
-import 'loading.dart';
-import 'login.dart';
+import 'splash_page.dart';
+import 'login_page.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
-    MaterialApp(
-      debugShowCheckedModeBanner: false,
-      initialRoute: '/loading',
-      routes: {
-        '/loading': (context) => SplashPage(),
-        '/login': (context) => LoginPage(),
-      },
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => LoginService())],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: {
+          '/': (context) => SplashPage(),
+          '/login': (context) => LoginPage(),
+          '/home': (context) => HomePage(),
+        },
+      ),
     ),
   );
 }
