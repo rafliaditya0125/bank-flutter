@@ -141,7 +141,18 @@ class LoginPageState extends State<LoginPage> {
 
                         return Container(
                           padding: EdgeInsets.all(10),
-                          child: Row(),
+                          child: Row(
+                            children: [
+                              const Icon(Icons.warning, color: Colors.red),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  errorMsg,
+                                  style: const TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     ),
@@ -171,6 +182,9 @@ class LoginPageState extends State<LoginPage> {
             SizedBox(height: 10),
             Button(
               label: 'Register',
+              onTap: () {
+                Navigator.pushNamed(context, '/register');
+              },
               icon: Icons.account_circle,
               backgroundColor: Properties.mainColor.withValues(alpha: 0.2),
               iconColor: Properties.mainColor,
@@ -180,6 +194,13 @@ class LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 }
 

@@ -1,4 +1,5 @@
 import 'package:bank/home_page.dart';
+import 'package:bank/register_page.dart';
 import 'package:flutter/material.dart';
 import 'splash_page.dart';
 import 'login_page.dart';
@@ -19,6 +20,7 @@ void main() async {
           '/': (context) => SplashPage(),
           '/login': (context) => LoginPage(),
           '/home': (context) => HomePage(),
+          '/register': (context) => RegisterPage(),
         },
       ),
     ),
