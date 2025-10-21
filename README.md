@@ -33,16 +33,6 @@ for example:
 ```bash
 flutter run -d linux
 ```
----
-## Project structures
-```
-lib/
- ├── button.dart      ←  Button template
- ├── splash_page.dart ← App Splash page
- ├── login_page.dart  ← App Login page
- ├── properties.dart  ← Properties used in app
- └── main.dart        ← Main code in this app
- ```
  ---
  ## Contact me
  Email: rafliaditya0125@gmail.com<br>
