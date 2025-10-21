@@ -90,4 +90,12 @@ class RegisterPageState extends State<RegisterPage> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    super.dispose();
+  }
 }
