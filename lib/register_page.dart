@@ -1,4 +1,7 @@
+import 'package:bank/button.dart';
+import 'package:bank/properties.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -7,8 +10,84 @@ class RegisterPage extends StatefulWidget {
 }
 
 class RegisterPageState extends State<RegisterPage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text('Register Page')));
+    LoginService loginService = Provider.of<LoginService>(
+      context,
+      listen: false,
+    );
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(color: Properties.mainColor),
+        title: Icon(Icons.savings, size: 40),
+        centerTitle: true,
+      ),
+      body: Container(
+        padding: EdgeInsets.all(30),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    'Create New Account',
+                    style: TextStyle(color: Properties.mainColor, fontSize: 20),
+                  ),
+                  const SizedBox(height: 40),
+                  Properties.generateInputField(
+                    'Email',
+                    Icons.email,
+                    usernameController,
+                    false,
+                    (text) {
+                      setState(() {});
+                    },
+                  ),
+                  Properties.generateInputField(
+                    'Password',
+                    Icons.lock,
+                    passwordController,
+                    true,
+                    (text) {
+                      setState(() {});
+                    },
+                  ),
+                  Properties.generateInputField(
+                    'Confirm Password',
+                    Icons.lock,
+                    confirmPasswordController,
+                    true,
+                    (text) {
+                      setState(() {});
+                    },
+                  ),
+                ],
+              ),
+            ),
+            Button(
+              label: 'Register',
+              enabled: true,
+              onTap: () async {
+                String username = usernameController.value.text;
+                String password = passwordController.value.text;
+
+                bool accountCreated = await loginService
+                    .createUserWithEmailAndPassword(username, password);
+                if (accountCreated) {
+                  Navigator.pop(context);
+                }
+              },
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
