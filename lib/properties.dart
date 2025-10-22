@@ -67,6 +67,35 @@ class Properties {
       BottomBarItem(label: 'Expenses', icon: Icons.payment, action: () {}),
     ];
   }
+
+  static void signOutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext ctx) {
+        return AlertDialog(
+          title: const Text(
+            'Flutter Savings Bank Logout',
+            style: TextStyle(color: Properties.mainColor),
+          ),
+          content: Container(
+            padding: EdgeInsets.all(20),
+            child: Text('Are you want to logout of your account?'),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () async {
+                Navigator.of(ctx).pop();
+                LoginService loginService = Provider.of(ctx, listen: false);
+                await loginService.signOut();
+                Navigator.of(ctx).pop();
+              },
+              child: Text('Yes', style: TextStyle(color: Properties.mainColor)),
+            ),
+          ],
+        );
+      },
+    );
+  }
 }
 
 class LoginService extends ChangeNotifier {
@@ -110,6 +139,21 @@ class LoginService extends ChangeNotifier {
       setLoginErrorMessage('Error during sign in: ' + ex.message!);
       return false;
     }
+  }
+
+  Future<bool> signOut() {
+    Completer<bool> signOutCompleter = Completer();
+
+    FirebaseAuth.instance.signOut().then(
+      (value) {
+        signOutCompleter.complete(true);
+      },
+      onError: (error) {
+        signOutCompleter.completeError({'error': error});
+      },
+    );
+
+    return signOutCompleter.future;
   }
 }
 

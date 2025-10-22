@@ -1,4 +1,5 @@
 import 'package:bank/bottom_bar.dart';
+import 'package:bank/drawer.dart';
 import 'package:bank/loading.dart';
 import 'package:bank/properties.dart';
 import 'package:flutter/material.dart';
@@ -88,6 +89,7 @@ class HomePage extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomBar(),
+      drawer: Drawer(child: AppDrawer()),
     );
   }
 }
