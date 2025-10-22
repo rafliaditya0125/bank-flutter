@@ -73,7 +73,7 @@ class RegisterPageState extends State<RegisterPage> {
             ),
             Button(
               label: 'Register',
-              enabled: true,
+              enabled: validateFormFields(),
               onTap: () async {
                 String username = usernameController.value.text;
                 String password = passwordController.value.text;
@@ -89,6 +89,14 @@ class RegisterPageState extends State<RegisterPage> {
         ),
       ),
     );
+  }
+
+  bool validateFormFields() {
+    return Properties.validateEmail(usernameController.value.text) &&
+        usernameController.value.text.isNotEmpty &&
+        passwordController.value.text.isNotEmpty &&
+        confirmPasswordController.value.text.isNotEmpty &&
+        (passwordController.value.text == confirmPasswordController.value.text);
   }
 
   @override
