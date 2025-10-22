@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:bank/bottom_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -57,6 +58,14 @@ class Properties {
         style: TextStyle(fontSize: 16),
       ),
     );
+  }
+
+  static List<BottomBarItem> getBottomBarItems() {
+    return [
+      BottomBarItem(label: 'Wirthdaw', icon: Icons.logout, action: () {}),
+      BottomBarItem(label: 'Deposit', icon: Icons.login, action: () {}),
+      BottomBarItem(label: 'Expenses', icon: Icons.payment, action: () {}),
+    ];
   }
 }
 
@@ -136,7 +145,7 @@ class BankService extends ChangeNotifier {
 
     FirebaseFirestore.instance
         .collection('accounts')
-        .doc('9vgwHArNTUoRnlkZRIaq')
+        .doc(userId)
         .collection('user_accounts')
         .get()
         .then((QuerySnapshot collection) {
