@@ -1,6 +1,9 @@
+import 'package:bank/bottom_bar.dart';
+import 'package:bank/loading.dart';
 import 'package:bank/properties.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:intl/intl.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -42,7 +45,7 @@ class HomePage extends StatelessWidget {
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       if (snapshot.connectionState != ConnectionState.done ||
                           !snapshot.hasData) {
-                        return Text('Loading');
+                        return Loading();
                       }
 
                       List<Account> accounts = snapshot.data as List<Account>;
@@ -73,7 +76,7 @@ class HomePage extends StatelessWidget {
                         itemCount: accounts.length,
                         itemBuilder: (context, index) {
                           var acct = accounts[index];
-                          return Text(acct.type!);
+                          return AccountCard(account: acct);
                         },
                       );
                     },
@@ -84,6 +87,7 @@ class HomePage extends StatelessWidget {
           ],
         ),
       ),
+      bottomNavigationBar: BottomBar(),
     );
   }
 }
@@ -94,6 +98,64 @@ class AccountCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      height: 180,
+      padding: EdgeInsets.all(20),
+      margin: EdgeInsets.only(bottom: 20),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(25),
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 15,
+            offset: const Offset(0.0, 5.0),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Column(
+            children: [
+              Text(
+                '${account!.type!.toUpperCase()} ACCT',
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Properties.mainColor, fontSize: 12),
+              ),
+              Text('**** ${account!.accountNumber}'),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Balance',
+                textAlign: TextAlign.left,
+                style: TextStyle(color: Properties.mainColor, fontSize: 12),
+              ),
+              Row(
+                children: [
+                  const Icon(
+                    Icons.monetization_on,
+                    color: Properties.mainColor,
+                    size: 30,
+                  ),
+                  Text(
+                    '\$${account!.balance!.toStringAsFixed(2)}',
+                    style: TextStyle(color: Colors.black, fontSize: 35),
+                  ),
+                ],
+              ),
+              Text(
+                'As of ${DateFormat.yMd().add_jm().format(DateTime.now())}',
+                style: TextStyle(fontSize: 10, color: Colors.grey),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
