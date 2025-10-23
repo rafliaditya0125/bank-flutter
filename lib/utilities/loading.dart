@@ -1,4 +1,4 @@
-import 'package:bank/properties.dart';
+import 'package:bank/utilities/properties.dart';
 import 'package:flutter/material.dart';
 
 class Loading extends StatelessWidget {

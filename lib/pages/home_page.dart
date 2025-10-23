@@ -1,7 +1,7 @@
-import 'package:bank/bottom_bar.dart';
-import 'package:bank/drawer.dart';
-import 'package:bank/loading.dart';
-import 'package:bank/properties.dart';
+import 'package:bank/utilities/bottom_bar.dart';
+import 'package:bank/utilities/drawer.dart';
+import 'package:bank/utilities/loading.dart';
+import 'package:bank/utilities/properties.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';

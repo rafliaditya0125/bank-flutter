@@ -1,4 +1,4 @@
-import 'package:bank/properties.dart';
+import 'package:bank/utilities/properties.dart';
 import 'package:flutter/material.dart';
 
 class Button extends StatelessWidget {
@@ -28,15 +28,17 @@ class Button extends StatelessWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(50),
           child: Material(
-            color: enabled!
-                ? backgroundColor
-                : backgroundColor!.withValues(alpha: 0.5),
+            color:
+                enabled!
+                    ? backgroundColor
+                    : backgroundColor!.withValues(alpha: 0.5),
             child: InkWell(
-              onTap: enabled!
-                  ? () {
-                      onTap!();
-                    }
-                  : null,
+              onTap:
+                  enabled!
+                      ? () {
+                        onTap!();
+                      }
+                      : null,
               highlightColor: Colors.white.withValues(alpha: 0.2),
               splashColor: Colors.white.withValues(alpha: 0.1),
               child: Container(

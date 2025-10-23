@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'properties.dart';
+import 'package:bank/utilities/properties.dart';
 
 class SplashPage extends StatelessWidget {
   const SplashPage({super.key});
