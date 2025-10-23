@@ -193,8 +193,7 @@ class BankService extends ChangeNotifier {
       context,
       listen: false,
     );
-    //String userId = loginService.getUserId();
-    String userId = '9vgwHArNTUoRnlkZRIaq';
+    String userId = loginService.getUserId();
     List<Account> accounts = [];
 
     Completer<List<Account>> accountsCompleter = Completer();

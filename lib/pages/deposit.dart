@@ -237,3 +237,20 @@ class AccountActionCard extends StatelessWidget {
     );
   }
 }
+
+class AccountDepositSlider extends StatelessWidget {
+  const AccountDepositSlider({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<DepositService>(
+      builder: (context, depositService, child) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [],
+        );
+      },
+    );
+  }
+}
