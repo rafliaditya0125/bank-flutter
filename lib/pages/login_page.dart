@@ -1,5 +1,5 @@
-import 'package:bank/button.dart';
-import 'package:bank/properties.dart';
+import 'package:bank/utilities/button.dart';
+import 'package:bank/utilities/properties.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

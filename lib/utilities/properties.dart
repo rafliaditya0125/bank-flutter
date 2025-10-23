@@ -1,5 +1,6 @@
 import 'dart:async';
-import 'package:bank/bottom_bar.dart';
+import 'package:bank/utilities/bottom_bar.dart';
+import 'package:bank/pages/deposit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -176,13 +177,24 @@ class Account {
 }
 
 class BankService extends ChangeNotifier {
+  Account? selectedAccount;
+
+  void setSelectedAccount(Account? acct) {
+    selectedAccount = acct;
+    notifyListeners();
+  }
+
+  Account? getSelectedAccount() {
+    return selectedAccount;
+  }
+
   Future<List<Account>> getAccounts(BuildContext context) {
     LoginService loginService = Provider.of<LoginService>(
       context,
       listen: false,
     );
-    String userId = loginService.getUserId();
-
+    //String userId = loginService.getUserId();
+    String userId = '9vgwHArNTUoRnlkZRIaq';
     List<Account> accounts = [];
 
     Completer<List<Account>> accountsCompleter = Completer();
@@ -192,20 +204,61 @@ class BankService extends ChangeNotifier {
         .doc(userId)
         .collection('user_accounts')
         .get()
-        .then((QuerySnapshot collection) {
-          for (var doc in collection.docs) {
-            var acctDoc = doc.data() as Map<String, dynamic>;
-            var acct = Account.fromJson(acctDoc, doc.id);
-            accounts.add(acct);
-          }
+        .then(
+          (QuerySnapshot collection) {
+            for (var doc in collection.docs) {
+              var acctDoc = doc.data() as Map<String, dynamic>;
+              var acct = Account.fromJson(acctDoc, doc.id);
+              accounts.add(acct);
+            }
 
-          Future.delayed(Duration(seconds: 1), () {
-            accountsCompleter.complete(accounts);
-          });
-        })
-        .catchError((error) {
-          accountsCompleter.complete([]);
+            Future.delayed(Duration(seconds: 1), () {
+              accountsCompleter.complete(accounts);
+            });
+          },
+          onError: (error) {
+            accountsCompleter.completeError({'error': error});
+          },
+        )
+        .catchError((e) {
+          print('Firestore error: $e');
         });
     return accountsCompleter.future;
+  }
+
+  Future<bool> performDeposit(BuildContext context) {
+    Completer<bool> depositComplete = Completer();
+
+    LoginService loginService = Provider.of<LoginService>(
+      context,
+      listen: false,
+    );
+    String userId = loginService.getUserId();
+
+    DepositService depositService = Provider.of<DepositService>(
+      context,
+      listen: false,
+    );
+    int amountToDeposit = depositService.amountToDeposit.toInt();
+
+    DocumentReference doc = FirebaseFirestore.instance
+        .collection('accounts')
+        .doc(userId)
+        .collection('user_accounts')
+        .doc(selectedAccount!.id);
+
+    doc
+        .update({'balance': selectedAccount!.balance! + amountToDeposit})
+        .then(
+          (value) {
+            depositService.resetDepositService();
+            depositComplete.complete(true);
+          },
+          onError: (error) {
+            depositComplete.completeError({'error': error});
+          },
+        );
+
+    return depositComplete.future;
   }
 }
